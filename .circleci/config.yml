@@ -35,7 +35,7 @@ jobs:
         environment:
           POSTGRES_USER: e2e
           POSTGRES_DB: psdb
-          POSTGRES_PASSWORD: password
+          POSTGRES_PWD: password
         steps:
             - checkout
             - restore_cache:
