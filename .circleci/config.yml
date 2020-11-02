@@ -13,8 +13,6 @@ jobs:
                 paths:
                 - ~/.cache/yarn
     check_format:
-        docker:
-            - image: cimg/node:14.10.1
         steps:
             - checkout
             - run : yarn lint && yarn format:check
