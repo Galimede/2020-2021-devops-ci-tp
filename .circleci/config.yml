@@ -35,7 +35,6 @@ jobs:
         environment:
           POSTGRES_USER: e2e
           POSTGRES_DB: psdb
-          POSTGRES_PWD: password
         steps:
             - checkout
             - restore_cache:
@@ -43,7 +42,7 @@ jobs:
             - run: 
                 command: yarn test:e2e
                 environment: 
-                    DATABASE_URL: postgres://e2e:password@localhost:5432/psdb
+                    DATABASE_URL: postgres://e2e@localhost:5432/psdb
                     API_PORT: 3000
                     API_HOST: localhost
                     API_PROTOCOL: http
