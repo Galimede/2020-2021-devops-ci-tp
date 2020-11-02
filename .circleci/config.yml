@@ -2,7 +2,7 @@ version: 2.1
 jobs:
     build:
         docker:
-            - image: cimg/node:12
+            - image: cimg/node:12.0
         steps:
             - checkout
             - restore_cache:
@@ -22,7 +22,7 @@ jobs:
             - run : yarn lint && yarn format:check
     test:
         docker:
-            - image: cimg/node:14.10.1
+            - image: cimg/node:12.0
         steps:
             - checkout
             - restore_cache:
@@ -30,7 +30,7 @@ jobs:
             - run : yarn test:ci
     test_e2e:
         docker:
-            - image: cimg/node:12
+            - image: cimg/node:12.0
             - image: circleci/postgres
               environment:
                 POSTGRES_USER: e2e
