@@ -1,0 +1,9 @@
+version: 2.1
+job-name: 
+    docker:
+        - image: circleci/node:12
+    steps:
+        - checkout
+        - run: 
+            name: Echo Hello World
+            command: echo hello World
