@@ -3,6 +3,12 @@ jobs:
     build:
         docker:
             - image: cimg/node:14.10.1
+            - image: circleci/postgres:latest
+              environment:
+                POSTGRES_USER: e2e
+                POSTGRES_DB: psdb
+                POSTGRES_PASSWORD: password
+
         steps:
             - checkout
             - restore_cache:
@@ -28,15 +34,10 @@ jobs:
             - restore_cache:
                 key: yarn-packages-v2{{ checksum "yarn.lock" }}
             - run : yarn test:ci
-    test_e2e:
-        docker:
+    test_e2e: 
+         docker:
             - image: cimg/node:14.10.1
-            - image: circleci/postgres:latest
-        environment:
-          POSTGRES_USER: e2e
-          POSTGRES_DB: psdb
-          POSTGRES_PASSWORD: password
-        steps:
+         steps:
             - checkout
             - restore_cache:
                 key: yarn-packages-v2{{ checksum "yarn.lock" }}
