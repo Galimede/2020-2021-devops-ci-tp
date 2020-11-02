@@ -6,12 +6,12 @@ jobs:
         steps:
             - checkout
             - restore_cache:
-                key: yarn-packages-{{ checksum "yarn.lock" }}
+                key: yarn-packages-v2{{ checksum "yarn.lock" }}
             - run: yarn global add node-gyp && yarn install
             - save_cache:
-                key: yarn-packages-{{ checksum "yarn.lock" }}
+                key: yarn-packages-v2{{ checksum "yarn.lock" }}
                 paths:
-                    - ~/.cache/yarn
+                    - ./node_modules
     check_format:
         docker:
             - image: cimg/node:14.10.1
