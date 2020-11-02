@@ -13,8 +13,12 @@ jobs:
                 paths:
                 - ~/.cache/yarn
     check_format:
+        docker:
+            - image: cimg/node:14.10.1
         steps:
             - checkout
+            - restore_cache:
+                key: yarn-packages-{{ checksum "yarn.lock" }}
             - run : yarn lint && yarn format:check
 
 workflows:
