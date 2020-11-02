@@ -20,11 +20,21 @@ jobs:
             - restore_cache:
                 key: yarn-packages-v2{{ checksum "yarn.lock" }}
             - run : yarn lint && yarn format:check
-
+    test:
+        docker:
+            - image: cimg/node:14.10.1
+        steps:
+            - checkout
+            - restore_cache:
+                key: yarn-packages-v2{{ checksum "yarn.lock" }}
+            - run : yarn test:ci
 workflows:
   build_and_test:
     jobs:
         - build
         - check_format:
             requires: 
+                - build
+        - test:
+            requires:
                 - build
