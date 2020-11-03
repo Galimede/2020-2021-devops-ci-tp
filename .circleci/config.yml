@@ -113,9 +113,6 @@ workflows:
                     - main
         - publish_latest:
             requires: 
-                - test
-                - test_e2e
-                - check_format
                 - build_image
             filters:
               branches:
