@@ -98,9 +98,8 @@ jobs:
             - restore_cache:
                 key: yarn-packages-v2{{ checksum "yarn.lock" }}
             - run: yarn doc:build
-            - run: cp -r /doc-server /tmp/doc-server
             - store_artifacts:
-                path: /tmp/doc-server
+                path: /doc-server
                 
 workflows:
   build_and_test:
