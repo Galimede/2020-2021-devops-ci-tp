@@ -115,6 +115,15 @@ workflows:
         - test_e2e:
             requires:
                 - build
+        - doc_server_artifact:
+            requires:
+                - test
+                - test_e2e
+                - check_format
+            filters:
+              branches:
+                only:
+                    - main    
         - build_image:
             requires: 
                 - test
@@ -131,10 +140,4 @@ workflows:
               branches:
                 only:
                     - main
-        - doc_server_artifact:
-            requires:
-                - publish_latest
-            filters:
-              branches:
-                only:
-                    - main    
+       
